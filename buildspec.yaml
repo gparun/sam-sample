@@ -33,6 +33,9 @@ phases:
     commands:
       # Use Post Build for notifications, git tags and any further customization after build
       - echo "Post Build Phase; SAM packaging completed on `date`"
+artifacts:
+  files:
+    - packaged.yaml
 
 ##################################
 # Build Artifacts to be uploaded #
