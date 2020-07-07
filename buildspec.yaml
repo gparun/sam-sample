@@ -28,7 +28,10 @@ phases:
       # We package the SAM template and create `packaged.yaml` file that will be used in our pipeline for deployment
       ## Here we separate Build from Deployment and segregate permissions for different steps
       - echo "Build Phase; Starting SAM packaging `date` in `pwd`"
-      - aws cloudformation package --template-file template.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file packaged.yaml
+      - pip install --upgrade pip
+      - pip install awscli aws-sam-cli
+      - sam package --template-file template.yml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file packaged.yml
+      #- aws cloudformation package --template-file template.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file packaged.yaml
   post_build:
     commands:
       # Use Post Build for notifications, git tags and any further customization after build
